@@ -8,6 +8,49 @@
     <!-- icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
+  //TEST PORTION FROM HACKSTER.IO MQTT WEBSOCKET
+  <script type = "text/javascript">
+  var BrokerURI="ns01-wss.brainium.com";
+  var MQTTUserName="oauth2-user";
+  var ExternalAccessToken=""; //put your access key here
+  var PlatformUserId = ""; //put your User ID here
+  var mqtt;
+  var port = 443;
+  var DeviceID = ""; //put your Device ID here;
+  var topic = "VISIBLE_SPECTRUM_LIGHTNESS";
+  var MotionTopic = "/v1/users/" + PlatformUserId + "/in/devices/" + DeviceID + "/datasources/" + topic;
+  function onConnectionLost(){
+   status_messages.innerHTML ="Connection Lost";
+  };
+  function onConnect() {
+   mqtt.subscribe(MotionTopic);
+   status_messages.innerHTML = "Subscribed to topic "+topic;
+  }; 
+  function onMessageArrived(r_message){
+   var payload = r_message.payloadString;
+   var messageString = payload.replace('[','').replace(']','');
+   var splitMessage = messageString.split("},{")
+   var arraylength = splitMessage.length;
+   for (var i = 0; i < arraylength; i++){
+       if (i==0){
+         out_messages.innerHTML=splitMessage[i].replace('{','')+"<br/>";
+       } else {
+         out_messages.innerHTML+=splitMessage[i].replace('}','')+"<br/>";
+       }
+    }
+   };
+  function MQTTconnect() {
+   status_messages.innerHTML = "connecting to "+ BrokerURI;
+   mqtt = new Paho.MQTT.Client(BrokerURI,port,"clientjs");
+    var options = {userName: MQTTUserName,
+             password: ExternalAccessToken,
+             timeout: 3,   
+             onSuccess: onConnect, };
+   mqtt.connect(options);
+   mqtt.onConnectionLost = onConnectionLost;
+   mqtt.onMessageArrived = onMessageArrived;
+  };
+</script>
   <body>
 
     <nav>
