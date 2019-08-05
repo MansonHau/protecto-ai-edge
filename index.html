@@ -12,11 +12,11 @@
   <script type = "text/javascript">
   var BrokerURI="ns01-wss.brainium.com";
   var MQTTUserName="oauth2-user";
-  var ExternalAccessToken=""; //put your access key here
-  var PlatformUserId = ""; //put your User ID here
+  var ExternalAccessToken="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJuczAxIiwic3ViIjoiMjU0NyIsInVzZXJfbmFtZSI6ImhhdW1hbnNvbjc2QGdtYWlsLmNvbSIsInNjb3BlIjpbInJlYWQtb25seSJdLCJleHAiOjE2MjExMzM4NzIsImF1dGhvcml0aWVzIjpbIlJPTEVfVVNFUiJdLCJqdGkiOiJkMGY3MjEyYi0yMmMzLTQ3MTYtOTRmNy1iMGIxYjIyMWFkODIiLCJjbGllbnRfaWQiOiJyZWFkLW9ubHkifQ.g0n019kArD5M4XNlg80tVf7MImZKXubjJYAGiP0Ew1M"; //put your access key here
+  var PlatformUserId = "2547"; //put your User ID here
   var mqtt;
   var port = 443;
-  var DeviceID = ""; //put your Device ID here;
+  var DeviceID = "TO136-020210000100089C"; //put your Device ID here;
   var topic = "VISIBLE_SPECTRUM_LIGHTNESS";
   var MotionTopic = "/v1/users/" + PlatformUserId + "/in/devices/" + DeviceID + "/datasources/" + topic;
   function onConnectionLost(){
